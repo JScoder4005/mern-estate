@@ -6,6 +6,7 @@ import {
     signInSuccess,
     signInFailure,
 } from '../Features/user/userSlice'
+import OAuth from '../components/OAuth'
 
 const SignIn = () => {
     const [formData, setFormData] = useState({})
@@ -72,6 +73,7 @@ const SignIn = () => {
                 >
                     {loading ? 'Loading..' : 'Sign In'}
                 </button>
+                <OAuth />
             </form>
             <div className="flex gap-2 mt-5">
                 <p>Dont have an account?</p>
@@ -79,7 +81,7 @@ const SignIn = () => {
                     <span className="text-blue-800">Sign up</span>
                 </Link>
             </div>
-            {error && <p className="text-red-600 mt-5">{error}</p>}
+            {/* {error && <p className="text-red-600 mt-5">{error}</p>} */}
         </div>
     )
 }
