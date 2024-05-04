@@ -22,6 +22,7 @@ const SignUp = () => {
   
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     setLoading(true);
     const res = await fetch('/api/auth/signup', {
       method: 'POST',
@@ -30,6 +31,7 @@ const SignUp = () => {
       },
       body: JSON.stringify(formData),
     });
+    
     try {
       const data = await res.json();
       if (data.success === false) {
