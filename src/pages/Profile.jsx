@@ -65,6 +65,7 @@ const Profile = () => {
             },
             (error) => {
                 setFileUploadError(true)
+                console.log(error)
             },
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>
