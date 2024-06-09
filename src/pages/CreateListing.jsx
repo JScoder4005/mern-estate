@@ -149,8 +149,9 @@ export default function CreateListing() {
                 }),
             })
 
-            console.log(res, 'response')
+            //console.log(res, 'response')
             const data = await res.json()
+            console.log(data, 'data')
             setLoading(false)
             if (data.success === false) {
                 setError(data.message)
