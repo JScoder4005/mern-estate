@@ -33,6 +33,7 @@ export default function CreateListing() {
 
     console.log(formData)
 
+    //TO upload the image to Backend
     const handleImageSubmit = () => {
         if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
             setUploading(true)
@@ -63,6 +64,7 @@ export default function CreateListing() {
         }
     }
 
+    //Storing the image
     const storeImage = async (file) => {
         return new Promise((resolve, reject) => {
             const storage = getStorage(app)
@@ -90,6 +92,7 @@ export default function CreateListing() {
         })
     }
 
+    //Removing the image
     const handleRemoveImage = (index) => {
         setFormData({
             ...formData,
@@ -97,6 +100,7 @@ export default function CreateListing() {
         })
     }
 
+    //Handling the form data
     const handleChange = (e) => {
         if (e.target.id === 'sale' || e.target.id === 'rent') {
             setFormData({
@@ -127,6 +131,7 @@ export default function CreateListing() {
         }
     }
 
+    //Submitting the form data
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {

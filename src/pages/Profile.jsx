@@ -22,10 +22,6 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 const Profile = () => {
-    const { currentUser, loading, error } = useSelector((state) => state.user)
-    const fileRef = useRef(null)
-    const dispatch = useDispatch()
-
     const [file, setFile] = useState(undefined)
     const [filePerc, setFilePerc] = useState(0)
     const [fileUploadError, setFileUploadError] = useState(false)
@@ -33,6 +29,10 @@ const Profile = () => {
     const [updateSuccess, setUpdateSuccess] = useState(false)
     const [showListingError, setShowListingError] = useState(false)
     const [userListings, setUserListings] = useState([])
+
+    const { currentUser, loading, error } = useSelector((state) => state.user)
+    const fileRef = useRef(null)
+    const dispatch = useDispatch()
 
     console.log(formData, 'form')
 
@@ -52,6 +52,7 @@ const Profile = () => {
         }
     }, [file])
 
+    //File Uploading
     const handleFileUpload = (file) => {
         const storage = getStorage(app)
         const fileName = new Date().getTime() + file.name
@@ -108,6 +109,7 @@ const Profile = () => {
     //     }
     // }
 
+    //Form Submission Handler
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
@@ -134,6 +136,7 @@ const Profile = () => {
         }
     }
 
+    //Account Deletion
     const handleDelete = async () => {
         try {
             dispatch(deleteUserStart())
@@ -151,6 +154,7 @@ const Profile = () => {
         }
     }
 
+    //Sign out handler
     const handleSignOut = async () => {
         try {
             dispatch(signOutStart())
@@ -166,6 +170,7 @@ const Profile = () => {
         }
     }
 
+    //to show all the listings
     const handleShowListings = async () => {
         try {
             setShowListingError(false)
@@ -293,6 +298,7 @@ const Profile = () => {
                                         className="h-16 w-16 object-contain "
                                     />
                                 </Link>
+
                                 <Link
                                     to={`/listings/${listing._id}`}
                                     className=" flex-1 text-slate-700"
