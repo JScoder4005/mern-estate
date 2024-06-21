@@ -43,7 +43,7 @@ const Profile = () => {
     //firebase storage
     // allow read
     // allow write: if
-    // request.resource.size < 2 * 1024 *1024 &&
+    // request.resource.size <div 2 * 1024 *1024 &&
     // request.resource.contentType.matches('image/.*')
 
     useEffect(() => {
@@ -255,68 +255,72 @@ const Profile = () => {
                 >
                     Create Listing
                 </Link>
-
-                <div className="flex justify-between mt-5">
-                    <span
-                        onClick={handleDelete}
-                        className="text-red-700 cursor-pointer"
-                    >
-                        Delete Account
-                    </span>
-                    <span
-                        onClick={handleSignOut}
-                        className="text-red-700 cursor-pointer"
-                    >
-                        Sign Out
-                    </span>
-                </div>
-                <p className="text-red-700 mt-5">{error ? error : ''}</p>
-                <p className="text-green-700 mt-5">
-                    {updateSuccess ? 'User is updated Successfully' : ''}
-                </p>
-                <>
-                    <button
-                        className="text-green-700 w-full"
-                        onClick={handleShowListings}
-                    >
-                        Show Listings
-                    </button>
-                    <p className="text-red-700 mt-5">
-                        {showListingError ? 'Error showing listings' : ''}
-                    </p>
-                    {userListings &&
-                        userListings.length > 0 &&
-                        userListings.map((listing) => (
-                            <div
-                                key={userListings._id}
-                                className="border rounded-lg p-3 flex justify-between items-center gap-4"
-                            >
-                                <Link to={`/listing/${listing._id}`}>
-                                    <img
-                                        src={listing.imageUrls[0]}
-                                        alt="listing cover"
-                                        className="h-16 w-16 object-contain "
-                                    />
-                                </Link>
-
-                                <Link
-                                    to={`/listings/${listing._id}`}
-                                    className=" flex-1 text-slate-700"
-                                >
-                                    <p>{listing.name}</p>
-                                </Link>
-                                <div className="flex flex-col items-center">
-                                    <button className="text-red-700 uppercase">
-                                        Delete
-                                    </button>
-                                    <button className="text-green-700 uppercase">
-                                        Edit
-                                    </button>
-                                </div>
-                            </div>
-                        ))}
-                </>
             </form>
+
+            <div className="flex justify-between mt-5">
+                <span
+                    onClick={handleDelete}
+                    className="text-red-700 cursor-pointer"
+                >
+                    Delete Account
+                </span>
+                <span
+                    onClick={handleSignOut}
+                    className="text-red-700 cursor-pointer"
+                >
+                    Sign Out
+                </span>
+            </div>
+            <p className="text-red-700 mt-5">{error ? error : ''}</p>
+            <p className="text-green-700 mt-5">
+                {updateSuccess ? 'User is updated Successfully' : ''}
+            </p>
+
+            <button
+                className="text-green-700 w-full"
+                onClick={handleShowListings}
+            >
+                Show Listings
+            </button>
+            <p className="text-red-700 mt-5">
+                {showListingError ? 'Error showing listings' : ''}
+            </p>
+            {userListings && userListings.length > 0 && (
+                <div className="flex flex-col gap-4">
+                    <h1 className="text-center mt-7 text-2xl font-semibold">
+                        Your Listings
+                    </h1>
+                    {userListings.map((listing) => (
+                        <div
+                            key={userListings._id}
+                            className="border rounded-lg p-3 flex justify-between items-center gap-4"
+                        >
+                            <Link to={`/listing/${listing._id}`}>
+                                <img
+                                    src={listing.imageUrls[0]}
+                                    alt="listing cover"
+                                    className="h-16 w-16 object-contain "
+                                />
+                            </Link>
+
+                            <Link
+                                to={`/listings/${listing._id}`}
+                                className=" flex-1 text-slate-700 font-semibold hover:underline trunc"
+                            >
+                                <p>{listing.name}</p>
+                            </Link>
+                            <div className="flex flex-col items-center">
+                                <button className="text-red-700 uppercase">
+                                    Delete
+                                </button>
+                                <button className="text-green-700 uppercase">
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     )
 }
